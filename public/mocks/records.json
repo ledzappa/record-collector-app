@@ -1,0 +1,30 @@
+{
+  "result": {
+    "records": [
+      {
+        "artist": "Iron Maiden",
+        "title": "Number of the beast",
+        "media": "Vinyl",
+        "year": "1983",
+        "format": "LP",
+        "label": "EMI"
+      },
+      {
+        "artist": "Metallica",
+        "title": "Black Album",
+        "media": "Vinyl",
+        "year": "1991",
+        "format": "LP",
+        "label": "EMI"
+      },
+      {
+        "artist": "Kings of Leon",
+        "title": "Only by the night",
+        "media": "CD",
+        "year": "2008",
+        "format": "CD",
+        "label": "EMI"
+      }
+    ]
+  }
+}

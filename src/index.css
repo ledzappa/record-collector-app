@@ -1,0 +1,12 @@
+body {
+  background-color: #555;
+  color: #fff;
+}
+
+.form-control {
+  margin-bottom: 0.8rem;
+}
+
+table td {
+  color: #fff;
+}

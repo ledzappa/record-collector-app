@@ -3,6 +3,7 @@ import api from './../Api/Api';
 
 const Login = () => {
   const [state, setState] = useState({ username: '', password: '' });
+  const [pendingLogin, setPendingLogin] = useState(false);
   const handleInputChange = (target: any) => {
     setState({
       ...state,
@@ -11,7 +12,12 @@ const Login = () => {
   };
 
   const handleLoginClick = (credentials: any) => {
-    api.login(credentials);
+    setPendingLogin(true);
+    api
+      .login(credentials)
+      .then((res) => console.log('success!'))
+      .catch((e) => console.log('failed!'))
+      .finally(() => setPendingLogin(false));
   };
 
   return (
@@ -47,6 +53,7 @@ const Login = () => {
           <button
             className="btn btn-primary"
             onClick={() => handleLoginClick(state)}
+            disabled={pendingLogin}
           >
             Login
           </button>

@@ -1,6 +1,19 @@
+html, body, .container-fluid, #root, .App {
+  height: 100%;
+}
+
 body {
-  background-color: #555;
+  background-color: rgb(219, 219, 219);
+  color: rgb(0, 0, 0);
+}
+
+.header {
   color: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #3f3f3f;
+  z-index: 1;
 }
 
 .form-control {
@@ -9,4 +22,10 @@ body {
 
 table td {
   color: #fff;
+}
+
+/* custom color theme */
+.btn-link, .btn-link:hover {
+  color: rgb(85, 85, 85);
+  font-weight: bold;
 }

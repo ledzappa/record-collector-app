@@ -1,0 +1,11 @@
+{
+  "collections": [
+    {
+      "id": "1",
+      "userId": "111",
+      "type": "music",
+      "name": "Min skivsamling",
+      "items": 3
+    }
+  ]
+}

@@ -1,4 +1,8 @@
-html, body, .container-fluid, #root, .App {
+html,
+body,
+.container-fluid,
+#root,
+.App {
   height: 100%;
 }
 
@@ -16,16 +20,17 @@ body {
   z-index: 1;
 }
 
+table.clickable td {
+  cursor: pointer;
+}
+
 .form-control {
   margin-bottom: 0.8rem;
 }
 
-table td {
-  color: #fff;
-}
-
 /* custom color theme */
-.btn-link, .btn-link:hover {
+.btn-link,
+.btn-link:hover {
   color: rgb(85, 85, 85);
   font-weight: bold;
 }

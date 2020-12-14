@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import api from './../../Api/Api';
 
 function AddRecord(props: any) {
-  const [state, setState] = useState({
+  const [record, setRecord] = useState({
     artist: '',
     title: '',
-    media: '',
-    year: '',
+    year: null,
     format: '',
+    subFormat: '',
     label: '',
   });
 
   const handleInput = (target: any) => {
-    setState({ ...state, [target.name]: target.value });
+    setRecord({ ...record, [target.name]: target.value });
   };
 
   const handleAddItemClick = () => {
-    console.log(state);
-    axios
-      .post('/api/v1/record', state)
-      .then((res) => console.log(res))
-      .catch((e) => console.error(e));
+    api
+      .addRecord(record)
+      .then((res: any) => console.log(res))
+      .catch((e: any) => console.error(e));
   };
 
   const handleClose = () => ({});
@@ -56,7 +55,7 @@ function AddRecord(props: any) {
             <div className="col-sm-6">
               <label>Media</label>
               <select
-                name="media"
+                name="format"
                 className="form-control"
                 onChange={(e) => handleInput(e.target)}
               >
@@ -70,7 +69,7 @@ function AddRecord(props: any) {
             <div className="col-sm-6">
               <label>Format</label>
               <select
-                name="format"
+                name="subFormat"
                 className="form-control"
                 onChange={(e) => handleInput(e.target)}
               >

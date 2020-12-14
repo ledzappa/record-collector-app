@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import api from './../Api/Api';
+import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useHistory } from 'react-router-dom';
+import api from './../Api/Api';
 
 const Collections = () => {
   const [collections, setCollections] = useState([]);
@@ -32,7 +33,12 @@ const Collections = () => {
         <tbody>
           {collections.map((collection: any, idx: number) => (
             <tr key={idx} onClick={() => handleClick()}>
-              <td>{collection.type}</td>
+              <td>
+                <FontAwesomeIcon
+                  icon={collection.type === 'music' ? 'record-vinyl' : 'gamepad'}
+                />{' '}
+                {collection.type}
+              </td>
               <td>{collection.name}</td>
               <td>{collection.items}</td>
             </tr>

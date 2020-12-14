@@ -1,11 +1,13 @@
-import logo from './logo.svg';
-import AddRecord from './Components/records/AddRecord';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faGamepad, faRecordVinyl } from '@fortawesome/free-solid-svg-icons';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import RecordsTable from './Components/records/RecordsTable';
-import Login from './Components/Login';
-import Header from './Components/Header';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Collections from './Components/Collections';
+import Header from './Components/Header';
+import Login from './Components/Login';
+import RecordsTable from './Components/records/RecordsTable';
+
+library.add(faRecordVinyl, faGamepad);
 
 function App() {
   return (

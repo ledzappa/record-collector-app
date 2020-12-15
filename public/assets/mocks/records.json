@@ -9,7 +9,7 @@
       "format": "Vinyl",
       "subFormat": "Vinyl",
       "information": "Lorem ipsum",
-      "imageUrls": ["url1", "url2", "url3"],
+      "imageUrls": ["img1.png", "url2", "url3"],
       "label": "EMI",
       "createdAt": "2020-05-12",
       "updatedAt": "2020-05-13"

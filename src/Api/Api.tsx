@@ -4,12 +4,12 @@ const mocks = true;
 
 const api = {
   login: (credentials: any) =>
-    axios.get(mocks ? 'mocks/login.json' : '/api/login', credentials),
+    axios.get(mocks ? 'assets/mocks/login.json' : '/api/login', credentials),
   getCollections: () =>
-    axios.get(mocks ? 'mocks/collections.json' : '/api/collection'),
-  getRecords: () => axios.get(mocks ? 'mocks/records.json' : '/api/record'),
+    axios.get(mocks ? 'assets/mocks/collections.json' : '/api/collection'),
+  getRecords: () => axios.get(mocks ? 'assets/mocks/records.json' : '/api/record'),
   addRecord: (record: Record) =>
-    axios.post(false ? 'mocks/records.json' : '/api/record', record),
+    axios.post(false ? 'assets/mocks/records.json' : '/api/record', record),
 };
 
 export default api;

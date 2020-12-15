@@ -1,0 +1,18 @@
+{
+  "collections": [
+    {
+      "id": "1",
+      "userId": "111",
+      "type": "music",
+      "name": "Min skivsamling",
+      "items": 113
+    },
+    {
+      "id": "2",
+      "userId": "111",
+      "type": "game",
+      "name": "Min spelsamling",
+      "items": 67
+    }
+  ]
+}

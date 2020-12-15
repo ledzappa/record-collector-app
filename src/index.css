@@ -28,6 +28,21 @@ table.table-hover td {
   margin-bottom: 0.8rem;
 }
 
+.collection-container {
+  cursor: pointer;
+  background-color: #654384;
+  border-radius: 1rem;
+  color: #fff;
+}
+
+.collection-container h1 {
+  font-size: 5rem;
+}
+
+.collection-container:hover {
+  background-color: #4f3468;
+}
+
 /* custom color theme */
 .btn-link,
 .btn-link:hover {

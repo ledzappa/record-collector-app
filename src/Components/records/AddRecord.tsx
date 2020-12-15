@@ -7,7 +7,7 @@ function AddRecord(props: any) {
   const [record, setRecord] = useState({
     artist: '',
     title: '',
-    year: null,
+    year: 0,
     format: '',
     subFormat: '',
     label: '',

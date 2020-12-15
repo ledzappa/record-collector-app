@@ -7,6 +7,7 @@ const RecordsTable = () => {
   const recordInitState = {
     artist: '',
     title: '',
+    imageUrls: [],
     year: null,
   };
   const [records, setRecords] = useState([]);
@@ -34,6 +35,7 @@ const RecordsTable = () => {
             {selectedRecord!.artist} - {selectedRecord!.title} (
             {selectedRecord!.year})
           </h4>
+          <img src={'/assets/img/' + selectedRecord.imageUrls[0]} />
           <button
             className="btn btn-secondary"
             onClick={() => setSelectedRecord(recordInitState)}

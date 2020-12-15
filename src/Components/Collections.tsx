@@ -22,29 +22,26 @@ const Collections = () => {
   return (
     <div>
       <h4>Collections</h4>
-      <table className="table table-hover clickable">
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Name</th>
-            <th>Items</th>
-          </tr>
-        </thead>
-        <tbody>
-          {collections.map((collection: any, idx: number) => (
-            <tr key={idx} onClick={() => handleClick()}>
-              <td>
-                <FontAwesomeIcon
-                  icon={collection.type === 'music' ? 'record-vinyl' : 'gamepad'}
-                />{' '}
-                {collection.type}
-              </td>
-              <td>{collection.name}</td>
-              <td>{collection.items}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="row justify-content-center">
+        <div className="col-12 col-sm-8 col-md-6">
+          <div className="row">
+            {collections.map((collection: any, idx: number) => (
+              <div className="col-12 col-sm-6">
+                <div
+                  className="collection-container text-center p-4"
+                  onClick={() => handleClick()}
+                >
+                  <h1 className="mb-4">
+                    <FontAwesomeIcon icon="record-vinyl" />
+                  </h1>
+                  <h2 className="mb-0">{collection.type}</h2>
+                  <div>{collection.items} items</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

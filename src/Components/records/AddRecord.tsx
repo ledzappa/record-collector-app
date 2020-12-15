@@ -14,7 +14,7 @@ function AddRecord(props: any) {
     label: '',
   });
 
-  const [image, setImage] = useState({ image: '', imageData: {} });
+  const [image, setImage] = useState<any>();
 
   const handleInput = (target: any) => {
     setRecord({ ...record, [target.name]: target.value });
@@ -31,11 +31,7 @@ function AddRecord(props: any) {
 
   const onImageChange = (event: any) => {
     if (event.target.files && event.target.files[0]) {
-      const img = event.target.files[0];
-      setImage({
-        imageData: event.target.files[0],
-        image: URL.createObjectURL(img),
-      });
+      setImage(event.target.files[0]);
     }
   };
 
@@ -119,7 +115,10 @@ function AddRecord(props: any) {
             name="myImage"
             onChange={(e: any) => onImageChange(e)}
           />
-          <img className="w-100" src={image.image} />
+          <img
+            className="w-100"
+            src={image ? URL.createObjectURL(image) : ''}
+          />
         </div>
       </Modal.Body>
       <Modal.Footer>

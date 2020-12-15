@@ -1,3 +1,4 @@
+import { constants } from 'os';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
@@ -13,18 +14,30 @@ function AddRecord(props: any) {
     label: '',
   });
 
+  const [image, setImage] = useState({ image: '', imageData: {} });
+
   const handleInput = (target: any) => {
     setRecord({ ...record, [target.name]: target.value });
   };
 
   const handleAddItemClick = () => {
     api
-      .addRecord(record)
+      .addRecord(record, image)
       .then((res: any) => console.log(res))
       .catch((e: any) => console.error(e));
   };
 
   const handleClose = () => ({});
+
+  const onImageChange = (event: any) => {
+    if (event.target.files && event.target.files[0]) {
+      const img = event.target.files[0];
+      setImage({
+        imageData: event.target.files[0],
+        image: URL.createObjectURL(img),
+      });
+    }
+  };
 
   return (
     <Modal show={props.showModal} onHide={() => handleClose()}>
@@ -101,6 +114,12 @@ function AddRecord(props: any) {
           </div>
           <hr />
           <button className="btn btn-secondary">Add image</button>
+          <input
+            type="file"
+            name="myImage"
+            onChange={(e: any) => onImageChange(e)}
+          />
+          <img className="w-100" src={image.image} />
         </div>
       </Modal.Body>
       <Modal.Footer>

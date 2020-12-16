@@ -1,38 +1,45 @@
-import { constants } from 'os';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import api from './../../Api/Api';
 
 function AddRecord(props: any) {
-  const [record, setRecord] = useState({
-    artist: '',
-    title: '',
-    year: 0,
-    format: '',
-    subFormat: '',
-    label: '',
+  const [recordForm, setRecordForm] = useState({
+    ...props.record,
   });
-
   const [image, setImage] = useState<any>();
 
-  const handleInput = (target: any) => {
-    setRecord({ ...record, [target.name]: target.value });
+  useEffect(() => {
+    setRecordForm({ ...props.record });
+  }, [props.record]);
+
+  const handleInputChange = (target: any) => {
+    setRecordForm({ ...recordForm, [target.name]: target.value });
   };
 
   const handleAddItemClick = () => {
     api
-      .addRecord(record, image)
+      .addRecord(recordForm, image)
       .then((res: any) => console.log(res))
       .catch((e: any) => console.error(e));
   };
 
   const handleClose = () => ({});
 
-  const onImageChange = (event: any) => {
+  const handleImageChange = (event: any) => {
     if (event.target.files && event.target.files[0]) {
       setImage(event.target.files[0]);
     }
+  };
+
+  const isFormValid = ({
+    artist,
+    title,
+  }: {
+    artist: string;
+    title: string;
+  }) => {
+    return artist.length > 0 && title.length > 0;
   };
 
   return (
@@ -48,7 +55,8 @@ function AddRecord(props: any) {
               <input
                 name="artist"
                 className="form-control"
-                onChange={(e) => handleInput(e.target)}
+                value={recordForm.artist}
+                onChange={(e) => handleInputChange(e.target)}
               />
             </div>
             <div className="col-sm-6">
@@ -56,17 +64,19 @@ function AddRecord(props: any) {
               <input
                 name="title"
                 className="form-control"
-                onChange={(e) => handleInput(e.target)}
+                value={recordForm.title}
+                onChange={(e) => handleInputChange(e.target)}
               />
             </div>
           </div>
           <div className="row">
             <div className="col-sm-6">
-              <label>Media</label>
+              <label>Format</label>
               <select
                 name="format"
                 className="form-control"
-                onChange={(e) => handleInput(e.target)}
+                value={recordForm.format}
+                onChange={(e) => handleInputChange(e.target)}
               >
                 <option value="vinyl">Vinyl</option>
                 <option value="cd">CD</option>
@@ -76,11 +86,12 @@ function AddRecord(props: any) {
               </select>
             </div>
             <div className="col-sm-6">
-              <label>Format</label>
+              <label>Sub Format</label>
               <select
                 name="subFormat"
                 className="form-control"
-                onChange={(e) => handleInput(e.target)}
+                value={recordForm.subFormat}
+                onChange={(e) => handleInputChange(e.target)}
               >
                 <option value="LP">LP</option>
                 <option value="2LP">2LP</option>
@@ -95,8 +106,10 @@ function AddRecord(props: any) {
               <label>Year</label>
               <input
                 name="year"
+                type="number"
                 className="form-control"
-                onChange={(e) => handleInput(e.target)}
+                value={recordForm.year}
+                onChange={(e) => handleInputChange(e.target)}
               />
             </div>
             <div className="col-sm-6">
@@ -104,16 +117,17 @@ function AddRecord(props: any) {
               <input
                 name="label"
                 className="form-control"
-                onChange={(e) => handleInput(e.target)}
+                value={recordForm.label}
+                onChange={(e) => handleInputChange(e.target)}
               />
             </div>
           </div>
           <hr />
-          <button className="btn btn-secondary">Add image</button>
           <input
             type="file"
             name="myImage"
-            onChange={(e: any) => onImageChange(e)}
+            accept="image/jpeg"
+            onChange={(e: any) => handleImageChange(e)}
           />
           <img
             className="w-100"
@@ -125,7 +139,11 @@ function AddRecord(props: any) {
         <Button variant="link" onClick={props.onChildClick}>
           Close
         </Button>
-        <Button variant="primary" onClick={() => handleAddItemClick()}>
+        <Button
+          variant="primary"
+          onClick={() => handleAddItemClick()}
+          disabled={!isFormValid(recordForm)}
+        >
           Add item
         </Button>
       </Modal.Footer>
@@ -136,6 +154,7 @@ function AddRecord(props: any) {
 AddRecord.propTypes = {
   showModal: PropTypes.bool,
   onChildClick: PropTypes.any,
+  record: PropTypes.any,
 };
 
 export default AddRecord;

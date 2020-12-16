@@ -7,8 +7,10 @@ const RecordsTable = () => {
   const recordInitState = {
     artist: '',
     title: '',
-    imageUrls: [],
-    year: null,
+    year: '',
+    format: 'vinyl',
+    subFormat: 'LP',
+    label: '',
   };
   const [records, setRecords] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -20,6 +22,10 @@ const RecordsTable = () => {
   }, []);
 
   const addItem = () => {
+    setShowModal(true);
+  };
+
+  const handleEditclick = () => {
     setShowModal(true);
   };
 
@@ -35,7 +41,6 @@ const RecordsTable = () => {
             {selectedRecord!.artist} - {selectedRecord!.title} (
             {selectedRecord!.year})
           </h4>
-          <img src={'/assets/img/' + selectedRecord.imageUrls[0]} />
           <button
             className="btn btn-secondary"
             onClick={() => setSelectedRecord(recordInitState)}
@@ -53,6 +58,12 @@ const RecordsTable = () => {
             onClick={() => setSelectedRecord(recordInitState)}
           >
             Back
+          </button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => handleEditclick()}
+          >
+            Edit
           </button>
         </div>
       ) : (
@@ -76,10 +87,7 @@ const RecordsTable = () => {
             </thead>
             <tbody>
               {records.map((record: any, idx: number) => (
-                <tr
-                  key={idx}
-                  onClick={() => setSelectedRecord({ ...record, idx })}
-                >
+                <tr key={idx} onClick={() => setSelectedRecord(record)}>
                   <td>{record.artist}</td>
                   <td>{record.title}</td>
                   <td>{record.year}</td>
@@ -90,6 +98,7 @@ const RecordsTable = () => {
         </div>
       )}
       <AddRecord
+        record={selectedRecord}
         showModal={showModal}
         onChildClick={() => handleCloseClick()}
       ></AddRecord>

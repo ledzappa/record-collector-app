@@ -22,11 +22,12 @@ const Collections = () => {
   return (
     <div>
       <h4>Collections</h4>
+      <hr/>
       <div className="row justify-content-center">
         <div className="col-12 col-sm-8 col-md-6">
           <div className="row">
             {collections.map((collection: any, idx: number) => (
-              <div className="col-12 col-sm-6">
+              <div className="col-12 col-sm-6 pb-2">
                 <div
                   className="collection-container text-center p-4"
                   onClick={() => handleClick()}

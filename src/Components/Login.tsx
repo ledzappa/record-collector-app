@@ -24,7 +24,7 @@ const Login = () => {
 
   return (
     <div className="row justify-content-center">
-      <div className="col-12 col-sm-6 pt-5 mt-5">
+      <div className="col-12 col-sm-6 pt-3 mt-md-5">
         <h4>Login</h4>
         <hr />
         <p>
